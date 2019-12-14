@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Flex Panels 💪</title>
   <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
 </head>
+
 <body>
   <style>
     html {
@@ -14,48 +16,89 @@
       font-size: 20px;
       font-weight: 200;
     }
-    
+
     body {
       margin: 0;
     }
-    
-    *, *:before, *:after {
+
+    *,
+    *:before,
+    *:after {
       box-sizing: inherit;
     }
 
     .panels {
       min-height: 100vh;
       overflow: hidden;
+      display: flex;
     }
 
     .panel {
       background: #6B0F9C;
-      box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
-      color: white;
+      box-shadow: inset 0 0 0 5px rgba(158, 211, 34, 0.1);
+      color: whitesmoke;
       text-align: center;
       align-items: center;
       /* Safari transitionend event.propertyName === flex */
       /* Chrome + FF transitionend event.propertyName === flex-grow */
       transition:
-        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
-        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+        flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
         background 0.2s;
       font-size: 20px;
       background-size: cover;
       background-position: center;
+      flex: 1;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
     }
 
-    .panel1 { background-image:url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500); }
-    .panel2 { background-image:url(https://source.unsplash.com/rFKUFzjPYiQ/1500x1500); }
-    .panel3 { background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d); }
-    .panel4 { background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500); }
-    .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
+    .panel1 {
+      background-image: url(https://lh3.googleusercontent.com/tWxWkd3vIPLRiPCUSjXsIiWwjQoeDyYlMyUJ_jBMyy1LH-Z-BkqOGa8QX0qfIjv_VvF0jjcnAcJ0XgIkIimFNb3D7iVWsZCDly5L_qqDp4-dGOLXFw14ApoebjninotMrjagAwkRGkbNYRgvxRBJod8dJt-IqnqFoM6YmZndLI3hVceVnVoRS6iuVk7yQAWi5TosPZ8CU_lohKwoQTOv96ukBGjNdpMubU8XgN_fg6CblMrxBceUTGDr6BRJuRtJFJdDwTtzYjJTa-ZGhiR7LVkICzDKJTlPWNWG9VdSmeI81Bh7WjXa2OvpF_KYOCW1a5K-E-XKf32WJcnsKppp1q2OFDUKCppOwsq0_eBDR-yACrN_meEoq5W3QiSFLgIsTOlDEnXiE4C4tsnWvgBe6Mr9yEem9A-0ZFcY_VuzqURGsSelJKmMaZhF3cMVKhJyycw5tF3SwX2FgbgJzVM0uagoRjy60dhUr-lWNYflqIWCovlVxOusELCnEZg3Ic93Bemn1jLiZB6DBLcIQjUlNjxI3oQFoo6U8kd6LNqEmzdkoSh8V-gAPcGEttYlQwDcEFNfRRJ72B_ZrvaB0cSwCYk1crkLjA1AHhl9S1ePjLWMbk5HdzHzQtUcIXZqL5wHozEN3tLUD3yNBwAPxnxqdHMtIXfyrn1LFj6wizysHNpu8vYQINEbgS8=w2736-h1541-no);
+    }
 
-    /* Flex Children */
-    .panel > * {
+    .panel2 {
+      background-image: url(https://lh3.googleusercontent.com/foK2qDNk42_0NcBcRam09t0KfMZ3TXOkO-Iw6eQ8b2i9-DdH53e2DSAEEWAf_YJmZzPwCvEovFjqre0wJTgeDrwKVbnD186-HuRyttvVlgKuPfD5fnoV2d_oEIcvrUs0qfOth7KguFuwSgOs2Tov3pL5mQd7-TWjTnUVXF_C_FvhtuPwOjvGb70kcTjWoTv6jMXtrkYEvXPvmPtzP3gCuqdnIDMXqU_ZAWnMRYOMnC8quadALD_2K3eXBptsAqXmV81xrcB5L66pgB2mySfqPF6U0eMKg6C9NGv4sIAbuqXRBNwj3D-hv1zrHP9DRmDEq_6FoEFLU2L_kPcAmOo2nbsSt4Zp36dwBZr9pOAHhoeHw6I_7Ip9qjUMs7UR_JspW9KS6JAipK8I5bhX5FWoUD-FNw91VfP9LGUd1lEjKbibGHkjdwi99igMqIavWY-GiZwDrv9mvR1yQz7XY8Wtt032C7p1D0gtZx8NLp3ddfRDmhXteEVArtPv_x6J8Lni2fd189AdUJpGJr7nc5jFjWadSXleToZ76QR32zMSkmrxS2Oz2IelINLN-2DjcAhY-MRUAnoXeFMu2wW7rvI2keiQ75O1_eXdO6UPFXspBYepL28yt4-_KoEu-uTabbVVDBvsFieOBcjbuSylY3PQJS2ZofSZig-WR-ux_ENyw3tAhiDwAZYr7pA=w2736-h1539-no);
+    }
+
+    .panel3 {
+      background-image: url(https://lh3.googleusercontent.com/iB00_ZQkcg_y0CbSeoOp_yubpX1oE-CqSuOitJuCEL3snDIDCg7nRWch-EqWMlcM7viwAQNzT1xaqnL3in854L7vWUHeTJXKuIJ36Pl2duV4uTza-Iw95YSlCYQPBr2_IoiUFZfbqipdlU0ZIev99MM85H5QnpjUxVdxkRyDwNFkb6rKknunzAMpgum3aBdmwKC6wrjWjtLY_Bl6Lj6rqb5jAMmTWSkPfKbQMZ140jqlWsH1P9iAJ3Hc_OlHjMjwdW1xYwe8jExcisVeUY-Gz5i6ZNwjEFgQRvCOWMIg_oEa5kIvpE8L3T-qm-LIkfRAwg8j-Jof3EZwbDNILIpRis_YZUYVKkowwKCLhbbwB45LfQ2oXsqtDmnt6Iqt6F-EcTZQbXiswE9Bxb0fPVmE1rNDSHHe4aj9vSZqhCEW2LuAWtsV2HC55SoFebTej41_Ck7gZttcbP3QtUzGDMOgHv7FCgBsU2qXfLbNeEWIq8aDwqKPZ-HhiuIKDQnQ4d1PAsRexqOvwUS3OLLJyXToKMEicn0U53Fv7yONZcPKkUdgkBNAHfOZ9DRp48Npk2iTUb6GW95gjjFRmdHiKAg3MIJyYXScxfLkZ-wIhtaxQzT0P4anIDPvXKtBc8YOG14z7AdoNOxWz57T7BJD4EYW0Iw3ErJ53qUNELsOAo2vpecB4c7RMNWEImI=w1205-h1604-no);
+    }
+
+    .panel4 {
+      background-image: url(https://lh3.googleusercontent.com/SmL5qf-wnFeyRxKanxxSk6mvWGVXtMX4EOFiTo2UvY0_7lt3kdiSEbId1E0WMXcbwgGdT4B9RMlHmphL-5Vd3Dqc6lnrb6uorxjcQewOZw1ppEou8WUiwkeRMXUPJTfOiswzkrrmSbLwfzKrR40bXumiGg2MKiTLgpejU1KNMlw2N2fx8eyTmmUNpmRQj5tGHzETDHGGHitC-Y3E-Nz6kvWZX-3oBAGxBlubkZu8EFg9MrKwX-zfpPtHIiae-aeJPucH9FPWGxb34YTcNkAjIR1ZTiCDy50zJOAgfaDeW8YL4XMSrSmQA-o8ATHoDQsxIijnbThtvZjYWttF5rZX_kOOUMTtmHEGPLmSJ-7snKKyrjU7wxIBkxJwsK1zC_GJ2H1t_k1s0kjbcosIE6nzGVZnhoEmOxEMz4z3xUxZYN3Xwg5xytYgcDlhcogz4LRQeWUqjYo1b5BaUPC4ejAWgaoTcG79nA1IfnD_W1HLyXYWwkPKOVN2mazvmD8KWxFMb7Y5N8NtqBS9f54ODvksm5-yAiMRFuFsr7B-E9O8T3lKdKVx9BYkuenAvem_BODTbWvHVnQuk3qpcVLMq96wqZ8r_3twaBoy2Hq5OdRapV5QohFCmavFg_Bv2nihNBczO8Evg3CSkoPgj3Uky1yZdA3m6n2AYsaC3KsHsCRndkiojnqspZsTWHo=w1205-h1604-no);
+    }
+
+    .panel5 {
+      background-image: url(https://lh3.googleusercontent.com/lCSV-Zp0ElR00A6npdwecGgmYpctpdDV_9h6SaztagaqSyvNVFD5Ho3XmsRi9L18yITdQ5jdqzrGrS7ELV-xMAPG36gRybTK6KDQsyunwPPQoObYwEPMTz6OmnwF5v3LfJ5Y_Nbq2rq7pir3CcjUOkur8HOvNGIzi5zYM9dO9iI4Wm4b-4XK0XCMe1zcAZ14hFGN218sEzhQgDZOa_LMAOLU062_qT0SDF6RZ13pQHHXGynYrtJY-7FndJGnl-i4DG2f46Gb1iDY1nJrtWOtjZvDh_BuBlRvtZy9SNo0AKT0uSWQY2S_ZXRsn-zGZ2EZfBZYaJqDSrsWFXd3ZtQ58ZfwCa1QH0TAu5OlGYOfiqOHdS85Ise8_SZT-NpyeSFr3StaODiG2iOAtGVg74U9nVls1Yxnv7yKMj5Mn-IbHujAqwP5BLd_VImCMRh4-qjpfW842gc1CoKknZmb0yrwHjpEd9xpkfzhVsvP9ZWrqEt-6eG44xhMM8_Du6xC07z0pl8fFKVHNF4D1jGZ-AOpzND3CNwU_sJ2EbP6kwKQzdCQJmdJVEoTkgMqhw_AdMAgafQx9HIZ-mz6RTMqQWXBIhCSOSSyTOy2Sx0oshtk_rRWf7vnOoszN4vaqYtbkqKh2j5OAo31xvWEsrxtJRPk1qcUuk3daIRKUrcfj78XpNGGNIwFPmzU3cI=w2416-h1604-no);
+    }
+
+    /* Flex Items */
+    .panel>* {
       margin: 0;
       width: 100%;
       transition: transform 0.5s;
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .panel>*:first-child {
+      transform: translateY(-100%);
+    }
+
+    .panel.open-active>*:first-child {
+      transform: translateY(0);
+    }
+
+    .panel>*:last-child {
+      transform: translateY(100%);
+    }
+
+    .panel.open-active>*:last-child {
+      transform: translateY(0);
     }
 
     .panel p {
@@ -64,15 +107,21 @@
       text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
       font-size: 2em;
     }
-    
+
     .panel p:nth-child(2) {
       font-size: 4em;
     }
 
     .panel.open {
+      flex: 5;
       font-size: 40px;
     }
 
+    @media only screen and (max-width: 600px) {
+      .panel p {
+        font-size: 1em;
+      }
+    }
   </style>
 
 
@@ -80,35 +129,51 @@
     <div class="panel panel1">
       <p>Hey</p>
       <p>Let's</p>
-      <p>Dance</p>
+      <p>Party!!</p>
     </div>
     <div class="panel panel2">
-      <p>Give</p>
-      <p>Take</p>
-      <p>Receive</p>
+      <p>Hey</p>
+      <p>Let's</p>
+      <p>Drink together!!</p>
     </div>
     <div class="panel panel3">
-      <p>Experience</p>
-      <p>It</p>
-      <p>Today</p>
+      <p>Hey</p>
+      <p>Let's</p>
+      <p>Have adventures!!</p>
     </div>
     <div class="panel panel4">
-      <p>Give</p>
-      <p>All</p>
-      <p>You can</p>
+      <p>Hey</p>
+      <p>Les't</p>
+      <p>TRAVEL!!!!</p>
     </div>
     <div class="panel panel5">
-      <p>Life</p>
-      <p>In</p>
-      <p>Motion</p>
+      <p>Hey</p>
+      <p>Let's</p>
+      <p>be in LOVE❤❤</p>
     </div>
   </div>
 
   <script>
+    const panels = document.querySelectorAll(".panel");
+    console.log("hello");
+    function toggleOpen() {
+      this.classList.toggle("open");
+    }
+
+    function toggleActive(e) {
+      console.log(e.propertyName)
+      if (e.propertyName.includes("flex")) {
+        this.classList.toggle("open-active")
+      }
+    }
+
+    panels.forEach(panel => panel.addEventListener("click", toggleOpen));
+    panels.forEach(panel => panel.addEventListener("transitionend", toggleActive));
 
   </script>
 
 
 
 </body>
+
 </html>
