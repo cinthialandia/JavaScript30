@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 
@@ -57,10 +59,32 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
+  <script>
+    function playsound(e) {
+      //We are listening which keyword was clicked 
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+      //We are selecting los div with class key to apply the css class and make the animation
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`) // you can select by atributte or element like .key
+      if (!audio) return; // stop the fucntion from running all together
+      audio.currentTime = 0; // rewind to the start because, when you press again it needs a few seconds to finished and if I press the keyword again it's not going to sound again.
+      audio.play(); // else play the audio associated with the keycode.
+      key.classList.add("playing") //Adding the css style 
+    };
 
-</script>
+    function removeTransition(e) {
+      // if the property name of the transition event is diferente that transform stop
+      if (e.propertyName !== "transform") return; //Skip if it's not a transform 
+      //if is the property remove playing and end with the animation.
+      this.classList.remove("playing");
+    };
+
+    const keys = document.querySelectorAll(".key"); // search all the keys.
+
+    keys.forEach(key => key.addEventListener("transitionend", removeTransition)); // We want to apply remove the transition to every key to finelicize the transition. 
+    window.addEventListener('keydown', playsound);
+  </script>
 
 
 </body>
+
 </html>
