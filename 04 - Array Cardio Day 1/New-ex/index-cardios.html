@@ -1,0 +1,64 @@
+// 12:40
+let users = [{
+"age": 22,
+"gender": "male",
+"city": "Buenos Aires"
+}, {
+"age": 25,
+"gender": "male",
+"city": "San Juan"
+}, {
+"age": 20,
+"gender": "female",
+"city": "Buenos Aires"
+}, {
+"age": 30,
+"gender": "female",
+"city": "San Juan"
+}, {
+"age": 28,
+"gender": "male",
+"city": "Buenos Aires"
+}, {
+"age": 33,
+"gender": "female",
+"city": "Buenos Aires"
+}, {
+"age": 29,
+"gender": "female",
+"city": "Mar del plata"
+}, {
+"age": 22,
+"gender": "male",
+"city": "Buenos Aires"
+}, {
+"age": 29,
+"gender": "male",
+"city": "San Juan"
+}, {
+"age": 33,
+"gender": "female",
+"city": "Buenos Aires"
+}];
+
+let people = users.filter(function (elemt) {
+if ("female" === elemt.gender && "Buenos Aires" === elemt.city)
+return true
+})
+
+// console.log(people)
+
+const sum = people.reduce(function (acc, elemt) {
+return elemt.age + acc
+}, 0);
+
+let average = sum / people.length;
+let averageFloor = Math.floor(average);
+
+
+console.log(averageFloor);
+
+</script>
+</body>
+
+</html>
