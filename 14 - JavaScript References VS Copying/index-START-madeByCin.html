@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JS Reference VS Copy</title>
 </head>
+
 <body>
 
   <script>
@@ -13,6 +15,9 @@
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
+
+    const newPlayers = [...players];
+    console.log(newPlayers);
 
     // You might think we can just do something like this:
 
@@ -53,4 +58,5 @@
   </script>
 
 </body>
+
 </html>
