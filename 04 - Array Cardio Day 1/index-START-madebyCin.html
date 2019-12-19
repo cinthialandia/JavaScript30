@@ -91,12 +91,14 @@
 
     const result = data.reduce(function (obj, item) { //obj is the accumulator and item every item in the array
       if (!obj[item]) { // if the item in the object doesn't exist, initialize with 0
-        obj[item] = 0;
+        obj[item] = 0;// esto es solo un if
       }
-      obj[item]++; //else if exist you add one
-      return obj;
+      obj[item]++; //exist you add one
+      return obj; // al pasar por el if, sale del mismo y en la funcion, declaramos que si existe sume. 
     }, {}) // put as an argument an an empty object because you need to save the accumulator to make the sum 
 
-        //console.log(result);
+    console.log(result);
+  </script>
+</body>
 
-  
+</html>
