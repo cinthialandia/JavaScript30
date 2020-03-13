@@ -1,22 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Type Ahead 👀</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form class="search-form">
+      <input type="text" class="search" placeholder="City or State" />
+      <ul class="suggestions">
+        <li>Filter for a city</li>
+        <li>or a state</li>
+      </ul>
+    </form>
+    <script>
+      const endpoint =
+        "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+      const cities = [];
+      // traer informacion de la api
+      async function getApi() {
+        const requestURL = endpoint;
+        const response = await fetch(requestURL);
+        const data = await response.json();
+        cities.push(...data);
+        console.log(cities);
+      }
+      getApi();
+      // en esta funcion, recibe 2 parametros
+      function findMatches(wordToMatch, cities) {
+        //los cuales seran filtrados por un filter y teniendo en cuenta un regex tomara en cuenta todas las letras de la palabra y acepta mayuscula y minuscula
+        return cities.filter(place => {
+          //aqui necesitamos descubrir cual ciudad o pais matchea cuando es buscada
+          const regex = new RegExp(wordToMatch, "gi");
+          //estamos evaluando la ciudad o el pais
+          return place.city.match(regex) || place.state.match(regex);
+        });
+      }
+      // function que realiza el cambio de numeros a numeros con comas usando un regex
 
-  <form class="search-form">
-    <input type="text" class="search" placeholder="City or State">
-    <ul class="suggestions">
-      <li>Filter for a city</li>
-      <li>or a state</li>
-    </ul>
-  </form>
-<script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+      function numberWithCommas(x) {
+        // la x es el numero de population
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
 
-</script>
-</body>
+      function displayMatches(e) {
+        //se llama la funcion con los valores dado del evento
+        const matchArray = findMatches(e.target.value, cities);
+        // y se guarda en un varible la funcion que hara la busqueda en los arrays del valor dado por el evento
+        const html = matchArray
+          // se realiza un map el cual se esta dando como parametro place, que es cada uno de los lugares del array es decir ciudades o estados
+          .map(place => {
+            // y este se evaluara con el valor dado por la funcion findmatches
+            const regex = new RegExp(e.target.value, "gi");
+            //estamos reemplazando el mismo para realizar el sombreado de aquello elegido por el usuario es decir lo que escribio
+            const cityName = place.city.replace(
+              regex,
+              /*html*/ `<span class="hl">${e.target.value}</span>`
+            );
+            const stateName = place.state.replace(
+              regex,
+              /*html*/ `<span class="hl">${e.target.value}</span>`
+            );
+            return /*html*/ `
+                <li>
+                <span class="name">${cityName}, ${stateName}</span>
+                <span class="population">${numberWithCommas(
+                  place.population
+                )}</span>
+                </li>
+                `;
+          })
+          .join("");
+        //e inyectamos todo ese html
+        suggestions.innerHTML = html;
+      }
+
+      const searchInput = document.querySelector(".search");
+      const suggestions = document.querySelector(".suggestions");
+
+      searchInput.addEventListener("change", displayMatches);
+      searchInput.addEventListener("keyup", displayMatches);
+    </script>
+  </body>
 </html>
