@@ -1,40 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Mouse Shadow</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao|Open+Sans|Permanent+Marker|Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <title>Mouse Shadow</title>
+  </head>
+  <body>
+    <div class="hero">
+      <h1 contenteditable>🔥Cinthia</h1>
+    </div>
 
-  <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
-  </div>
+    <style>
+      html {
+        color: black;
+        font-family: "Open Sans", sans-serif;
+        font-family: "Roboto", sans-serif;
+        font-family: "Permanent Marker", cursive;
+        font-family: "Liu Jian Mao Cao", cursive;
+      }
 
-  <style>
-  html {
-    color: black;
-    font-family: sans-serif;
-  }
+      body {
+        margin: 0;
+      }
 
-  body {
-    margin: 0;
-  }
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+      }
 
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-  }
+      h1 {
+        text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+        font-size: 100px;
+      }
+    </style>
 
-  h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
-    font-size: 100px;
-  }
-  </style>
+    <script>
+      const hero = document.querySelector(".hero");
+      const text = hero.querySelector("h1");
+      const walk = 600; // 100px
+      let hueColor1 = 0;
+      let hueColor2 = 90;
+      let hueColor3 = 180;
+      let hueColor4 = 270;
 
-<script>
-</script>
-</body>
+      function shadow(e) {
+        //const width = hero.offsetWidth
+        //const height = hero.offsetHeight
+        const { offsetWidth: width, offsetHeight: height } = hero;
+        let { offsetX: x, offsetY: y } = e;
+        hueColor1++;
+        hueColor2++;
+        hueColor3++;
+        hueColor4++;
+
+        if (this !== e.target) {
+          x = x + e.target.offsetLeft;
+          y = y + e.target.offsetTop;
+        }
+        //console.log(x, y);
+
+        const xWalk = Math.round((x / width) * walk - walk / 2);
+        const yWalk = Math.round((y / height) * walk - walk / 2);
+        text.style.textShadow = `${xWalk}px ${yWalk}px 0 hsl(${hueColor1}, 100%, 50%),
+        ${xWalk * -1}px ${yWalk}px 0 hsl(${hueColor2}, 100%, 50%),
+        ${yWalk}px ${xWalk * -1}px 0 hsl(${hueColor3}, 100%, 50%),
+        ${yWalk * -1}px ${xWalk}px 0 hsl(${hueColor4}, 100%, 50%)`;
+      }
+
+      hero.addEventListener("mousemove", shadow);
+    </script>
+  </body>
 </html>
