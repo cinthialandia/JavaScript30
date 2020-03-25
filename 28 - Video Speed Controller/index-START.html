@@ -1,20 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Video Speed Scrubber</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <div class="wrapper">
-    <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop controls></video>
-    <div class="speed">
-      <div class="speed-bar">1×</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Video Speed Scrubber</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="video-wrapper">
+        <video
+          class="flex"
+          src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"
+          loop
+          controls
+        ></video>
+      </div>
+      <div class="speed">
+        <div class="speed-bar">1×</div>
+      </div>
     </div>
-  </div>
 
-<script>
-</script>
-</body>
+    <script>
+      const speed = document.querySelector(".speed");
+      const bar = speed.querySelector(".speed-bar");
+      const video = document.querySelector(".flex");
+
+      speed.addEventListener("mousemove", function(e) {
+        // en la y se guarda que tan abajo esta el mouse con respecto al inicio de la barra.
+        //se hace calculando la ubicacion en el eje vertical del mouse menos, la ubicacion vertical, del inicio de la barra en la pantalla calculados en pixeles
+        const y = e.pageY - speed.offsetTop;
+        //se guarda el porcentaje del movimiento del mouse que tan arriba esta con respecto al elemento en porcentaje
+        const percent = y / speed.offsetHeight;
+        const min = 0.4;
+        const max = 4;
+        const height = Math.round(percent * 100) + "%";
+        //calcula cuanto equivale el porentaje en el rango de 0.4 a 4
+        //ejemplo si el porcentaje es 100% equivale a 4
+        const playbackRate = percent * (max - min) + min;
+        bar.style.height = height;
+        bar.textContent = playbackRate.toFixed(2) + "x";
+        video.playbackRate = playbackRate;
+
+        // console.log(height);
+        // console.log(percent);
+        // console.dir(e);
+      });
+    </script>
+  </body>
 </html>
